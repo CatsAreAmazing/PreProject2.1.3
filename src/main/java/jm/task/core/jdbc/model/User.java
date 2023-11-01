@@ -28,6 +28,12 @@ public class User {
         this.age = age;
     }
 
+    public String toString() {
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("ID: ").append(this.id).append(" Имя: ").append(this.name).append(" Фамилия: ").append(this.lastName).append(" Возраст: ").append(this.age);
+        return stringBuilder.toString();
+    }
+
     public Long getId() {
         return id;
     }
