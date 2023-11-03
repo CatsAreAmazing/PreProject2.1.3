@@ -1,6 +1,8 @@
 package jm.task.core.jdbc;
 
+import jm.task.core.jdbc.dao.UserDaoJDBCImpl;
 import jm.task.core.jdbc.model.User;
+import jm.task.core.jdbc.service.UserService;
 import jm.task.core.jdbc.service.UserServiceImpl;
 import jm.task.core.jdbc.util.Util;
 
@@ -8,7 +10,7 @@ import java.sql.SQLException;
 
 public class Main {
     public static void main(String[] args) throws ClassNotFoundException, SQLException {
-        UserServiceImpl test = new UserServiceImpl();
+        UserService test = new UserServiceImpl();
         test.createUsersTable();
         test.saveUser("Раз", "Разраз", (byte) 10);
         test.saveUser("Два", "Двадва", (byte) 11);
@@ -18,5 +20,6 @@ public class Main {
         test.cleanUsersTable();
         test.getAllUsers();//Надо же проверить
         test.dropUsersTable();
+        Util.closeConnection();
     }
 }
