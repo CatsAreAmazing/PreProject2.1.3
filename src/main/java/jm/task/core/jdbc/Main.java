@@ -12,14 +12,17 @@ public class Main {
     public static void main(String[] args) throws ClassNotFoundException, SQLException {
         UserService test = new UserServiceImpl();
         test.createUsersTable();
-        test.saveUser("Раз", "Разраз", (byte) 10);
-        test.saveUser("Два", "Двадва", (byte) 11);
-        test.saveUser("Три", "Тритри", (byte) 12);
-        test.saveUser("Четыре", "кхм", (byte) 13);
+        test.saveUser("Раз", "Два", (byte) 10);
+        test.saveUser("Раз", "Два", (byte) 11);
+        test.saveUser("Раз", "Два", (byte) 12);
+        test.saveUser("Раз", "Два", (byte) 13);
+        test.getAllUsers();
+        test.removeUserById(1);
         test.getAllUsers();
         test.cleanUsersTable();
         test.getAllUsers();//Надо же проверить
         test.dropUsersTable();
-        Util.closeConnection();
+        //как я понял из постов на стаковерфлоу, SessionFactory закрывать не надо
+        //https://stackoverflow.com/questions/30096416/where-to-open-and-where-to-close-sessionfactory-in-my-application
     }
 }
