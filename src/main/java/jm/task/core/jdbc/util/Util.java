@@ -22,7 +22,8 @@ public class Util {
     private static Connection connection;
 
 
-    public static Configuration configue() {
+    public static SessionFactory getSessionFactory() {
+        SessionFactory sessionFactory;
         try {
             Configuration configuration = new Configuration();
 
@@ -42,8 +43,12 @@ public class Util {
             configuration.setProperties(settings);
 
             configuration.addAnnotatedClass(User.class);
+            ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder()
+                    .applySettings(configuration.getProperties()).build();
 
-            return configuration;
+            sessionFactory = configuration.buildSessionFactory(serviceRegistry);
+
+            return sessionFactory;
         } catch (Exception e) {
             e.printStackTrace();
             return null;
